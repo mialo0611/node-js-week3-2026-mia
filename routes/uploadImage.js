@@ -36,8 +36,11 @@ function handleUpload(req, res) {
 
   form.parse(req, (err, fields, files) => {
     if (err) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: err.message || 'Upload failed' }));
+      res.status(500).json({
+        error: err.message || 'Upload failed'
+      });
+      //res.writeHead(500, { 'Content-Type': 'application/json' });
+      //res.end(JSON.stringify({ error: err.message || 'Upload failed' }));
       return;
     }
 

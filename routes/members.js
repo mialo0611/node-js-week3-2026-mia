@@ -39,7 +39,8 @@ function filterByQuery(list, query) {
 /* 作答區 */
 function validateBody(body) {
     const { name, level } = body;
-    if (!name || !level) {
+    if (!name === null || typeof name ==='undefined'|| 
+        !level === null || typeof level === 'undefined') {
         return { valid: false, 
                  error: '缺 name 或 level' 
                };

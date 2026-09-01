@@ -47,8 +47,11 @@ function handleUpload(req, res) {
     const file = Array.isArray(files.image) ? files.image[0] : files.image;
     
     if (!file) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'No file uploaded' }));
+      res.status(400).json({
+        error: 'No file uploaded'
+      });
+      //res.writeHead(400, { 'Content-Type': 'application/json' });
+      //res.end(JSON.stringify({ error: 'No file uploaded' }));
       return;
     }    
     
@@ -57,9 +60,10 @@ function handleUpload(req, res) {
       sizeKB: Math.round(file.size / 1024),
       savedPath: file.filepath,
     };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));    
+    res.status(200).json(response);
+    //res.writeHead(200, { 'Content-Type': 'application/json' });
+    //res.end(JSON.stringify(response));    
+    return;
     });    
 }
 
